@@ -1314,3 +1314,59 @@ if( typeof jQuery !== 'undefined' ) {
 
 	return {};
 })));
+
+(function initRouter() {
+	console.log('Init Router');
+
+	const contentDiv = document.getElementById('page-content');
+
+	const routes = {
+		'/': 'views/home.html',
+		'/products': 'views/products.html',
+		'/about': 'views/about.html',
+		'/blog': 'views/blog.html',
+		'/support': 'views/support.html'
+	};
+
+	const router = async () => {
+		const location = window.location.hash.slice(1) || '/';
+
+		const links = document.querySelectorAll('header a');
+
+		links.forEach(link => {
+			link.classList.remove('active');
+			if (link.getAttribute('href') === `#${location}`) {
+				link.classList.add('active');
+			}
+		});
+
+		const route = routes[location];
+
+		if (route) {
+			try {
+				const response = await fetch(route);
+
+				if (response.ok) {
+					const html = await response.text();
+					contentDiv.innerHTML = html;
+
+					const activeLink = document.querySelector(`header a[href='#${location}']`);
+
+					if (activeLink) {
+						window.scrollTo(0, 0);
+					}
+				} else {
+					contentDiv.innerHTML = '<h1>Page not found</h1>';
+				}
+			} catch (error) {
+				console.error('Error fetching the route:', error);
+				contentDiv.innerHTML = '<h1>Error loading the page</h1>';
+			}
+		} else {
+			// contentDiv.innerHTML = '<h1>Page not found</h1>';
+		}
+	};
+
+	window.addEventListener('hashchange', router);
+	window.addEventListener('load', router);
+})();

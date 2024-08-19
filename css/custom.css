@@ -1,7 +1,56 @@
-/* ----------------------------------------------------------------
-	Custom CSS
+body {
+	margin: 0;
+	padding: 0;
+	direction: rtl;
+}
 
-	Add all your Custom Styled CSS here for New Styles or
-	Overwriting Default Theme Styles for Better Handling Updates
------------------------------------------------------------------*/
+html {
+	font-size: 16px;
+	font-family: 'AssistantRegular', Arial, sans-serif !important;
+	color: #333;
+}
 
+* {
+	box-sizing: border-box;
+}
+
+header#header {
+	height: 100px !important;
+}
+
+#page-content .page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 240px);
+}
+
+#page-content .page.home {
+	margin-top: 100px;
+}
+
+footer#footer {
+	display: flex;
+	flex-direction: column;
+	min-height: calc(100vh - 60px);
+	margin: 0 !important;
+}
+
+footer#footer #copyrights {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 140px;
+}
+
+footer#footer .container.text-center {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+footer#footer .container.text-center .footer-widgets-wrap {
+	height: 100%;
+}
