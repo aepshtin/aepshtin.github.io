@@ -1,3 +1,7 @@
+:root {
+	--primary-color: #54a4a6;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -16,6 +20,14 @@ html {
 
 header#header {
 	height: 100px !important;
+}
+
+#header {
+	--cnvs-primary-menu-hover-color: var(--primary-color) !important;
+}
+
+header#header a.active.menu-link {
+    color: var(--cnvs-primary-menu-hover-color);
 }
 
 #page-content .page {
